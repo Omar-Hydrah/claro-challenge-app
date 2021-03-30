@@ -1,4 +1,3 @@
-- Create User model
 - Create User Service
 - Create User endpoints:
 	- login
