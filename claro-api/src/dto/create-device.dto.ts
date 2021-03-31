@@ -2,10 +2,10 @@ export class CreateDeviceDto{
   id: number;
   userId: number;
   name: string;
-  model: DeviceModel; 
+  model: DeviceModel;
 }
 
-enum DeviceModel{
+export enum DeviceModel{
   ios     = "ios",
   android = "android"
 }
