@@ -12,14 +12,24 @@ export class UserService {
   }
 
   registerDevice(userId: number, device: Device){
-    
+
   }
 
   switchDevice(userId: number, deviceId: string, newDevice: Device){
 
   }
 
-  changeDeviceName(userId: number, deviceId: string, newName: string){
-    
+  changeDeviceName(deviceId: string, newName: string){
+
   }
 }
+
+
+export enum Result{
+  success= "success",
+  failure= "failure",
+  // If the user tries to register more than he is allowed to
+  maxDevice= "maxDevice",
+  // If the user has already switched device in the past 30 days
+  timeRestrain= "timeRestrain"
+};
