@@ -86,10 +86,21 @@ export class UserService {
         }
       });
     }*/
-    let {userIndex, deviceIndex} = this.findDeviceOwnerIndex(deviceId)
+    let {userIndex, deviceIndex} = this.findDeviceOwnerIndex(deviceId);
 
     if(deviceIndex != null && userIndex != null){
       userList[userIndex].devices[deviceIndex].name = newName;
+      return Result.success;
+    }else{
+      return Result.failure;
+    }
+  }
+
+  removeDevice(deviceId : string) : Result{
+    let {userIndex, deviceIndex} = this.findDeviceOwnerIndex(deviceId);
+
+    if(deviceIndex != null && userIndex != null){
+      userList[userIndex].devices.splice(deviceIndex, 1);
       return Result.success;
     }else{
       return Result.failure;

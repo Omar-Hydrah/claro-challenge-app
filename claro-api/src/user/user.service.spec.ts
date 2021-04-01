@@ -87,5 +87,17 @@ describe('UserService', () => {
       let result = service.switchDevice(userId, deviceId, device);
       expect(result).toEqual(Result.success);
     });
-  })
+  });
+
+  describe("Removing a device", ()=>{
+    it("should remove a device", ()=>{
+      let deviceCount : number = userList[1].devices.length;
+
+      let device : Device = userList[1].devices[0];
+      let result = service.removeDevice(device.id);
+
+      expect(result).toEqual(Result.success);
+      expect(userList[1].devices.length).toEqual(deviceCount - 1);
+    });
+  });
 });
