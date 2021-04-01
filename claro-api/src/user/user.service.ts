@@ -75,7 +75,7 @@ export class UserService {
   }
 
   changeDeviceName(deviceId: string, newName: string) : Result{
-    let userIndex   = -1;
+    /*let userIndex   = -1;
     let deviceIndex = -1;
     for(var i = 0; i < userList.length; i++){
       let device : Device = userList[i].devices.find((d, index)=>{
@@ -85,7 +85,9 @@ export class UserService {
           return d;
         }
       });
-    }
+    }*/
+    let {userIndex, deviceIndex} = this.findDeviceOwnerIndex(deviceId)
+
     if(deviceIndex != null && userIndex != null){
       userList[userIndex].devices[deviceIndex].name = newName;
       return Result.success;
@@ -111,6 +113,22 @@ export class UserService {
     }else{
       return false;
     }
+  }
+
+  private findDeviceOwnerIndex(deviceId : string) : any{
+    let userIndex   = -1;
+    let deviceIndex = -1;
+    for(var i = 0; i < userList.length; i++){
+      let device : Device = userList[i].devices.find((d, index)=>{
+        if(d.id == deviceId){
+          userIndex = i;
+          deviceIndex = index;
+          return d;
+        }
+      });
+    }
+
+    return {userIndex, deviceIndex};
   }
 }
 
