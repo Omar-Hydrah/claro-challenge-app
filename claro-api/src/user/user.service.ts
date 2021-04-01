@@ -109,13 +109,16 @@ export class UserService {
 
   getUser(userId: number) : User{
     let user : User = userList.find((u)=>{
-      return u.id === userId;
+      return u.id == userId;
     });
     return user;
   }
 
   getUserDevices(userId: number) : Device[]{
     let user : User = this.getUser(userId);
+    if(!user){
+      return null;
+    }
     return user.devices;
   }
 
