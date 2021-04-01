@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-          android:name="LoginActivity"
+          android:name="MainActivity"
           android:label="@string/login"
           android:theme="@style/AppTheme"
           >

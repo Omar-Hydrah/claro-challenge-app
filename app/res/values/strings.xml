@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MainActivity</string>
+    <string name="app_name">Claro Api</string>
+    <string name="activity_home">Home</string>
     <string name="text_login">Login</string>
     <string name="login">Login</string>
     <string name="userid">User Id</string>
