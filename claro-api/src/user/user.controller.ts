@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Param, Req } from '@nestjs/common';
 import { UserService, Result } from "./user.service";
 import { Device }              from "../interfaces/device.interface";
+import { User }                from "../interfaces/user.interface";
 import { ChangeDeviceNameDto } from "../dto/change-device-name.dto";
 import { CreateDeviceDto } from "../dto/create-device.dto";
 import { RegisterDeviceDto } from "../dto/register-device.dto";
@@ -29,5 +30,20 @@ export class UserController {
   @Post("change-device-name")
   changeDeviceName(@Body() dto : ChangeDeviceNameDto) : Result{
     return this.userService.changeDeviceName(dto.deviceId, dto.newName);
+  }
+
+  @Get("profile/:id")
+  getUser(@Param() params) : User{
+    let user : User = this.userService.getUser(params.id);
+    console.log("user", user);
+    return user;
+  }
+
+  @Get("profile/:id/device-list/")
+  getUserDevices(@Param() params) : Device[]{
+
+    let devices : Device[] = this.userService.getUserDevices(params.id);
+    console.log("devices", devices);
+    return devices;
   }
 }
