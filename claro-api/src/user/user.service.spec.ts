@@ -100,4 +100,19 @@ describe('UserService', () => {
       expect(userList[1].devices.length).toEqual(deviceCount - 1);
     });
   });
+
+  it("should return a user based on id", ()=>{
+    let userId = userList[0].id;
+
+    let user = service.getUser(userId);
+    expect(user).toBeDefined();
+    expect(user.id).toEqual(userId);
+  });
+
+  it("should return the device list for a user id", ()=>{
+    let userId = userList[2].id;
+
+    let deviceList : Device[] = service.getUserDevices(userId);
+    expect(deviceList.length).toEqual(2);
+  })
 });

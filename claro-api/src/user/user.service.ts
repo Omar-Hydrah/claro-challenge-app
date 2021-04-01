@@ -107,6 +107,18 @@ export class UserService {
     }
   }
 
+  getUser(userId: number) : User{
+    let user : User = userList.find((u)=>{
+      return u.id === userId;
+    });
+    return user;
+  }
+
+  getUserDevices(userId: number) : Device[]{
+    let user : User = this.getUser(userId);
+    return user.devices;
+  }
+
   private isPassedTimeRestrain(lastChanged : Date) : boolean{
     if(lastChanged == null){
       // In case of new users, lastChanged will always equal null
