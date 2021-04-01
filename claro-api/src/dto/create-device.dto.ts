@@ -1,5 +1,5 @@
 export class CreateDeviceDto{
-  id: number;
+  id: string;
   userId: number;
   name: string;
   model: DeviceModel;
