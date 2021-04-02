@@ -30,4 +30,8 @@ public class User{
   public void setDevices(Device[] devices){this.devices = devices;}
   public Device[] getDevices(){return this.devices;}
 
+  @Override
+  public String toString(){
+    return "{id: " + this.id + "}";
+  }
 }
