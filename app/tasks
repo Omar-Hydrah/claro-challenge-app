@@ -1,0 +1,4 @@
+- Create DeviceAdapter
+- Add endpoints to control device details
+- Create DeviceDetailsActivity
+- Fix Gson bug ocurring in LoginActivity
