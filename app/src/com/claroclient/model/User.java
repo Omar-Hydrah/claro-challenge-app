@@ -3,7 +3,7 @@ package com.claroclient.model;
 import com.claroclient.model.Device;
 
 public class User{
-  private String id;
+  private int id;
   private String password;
   private int numberOfDevices;
   private String lastChanged;
@@ -13,7 +13,7 @@ public class User{
 
   }
 
-  public User(String id, int numberOfDevices, String lastChanged, 
+  public User(int id, int numberOfDevices, String lastChanged, 
     Device[] devices)
   {
     this.id              = id;
@@ -22,7 +22,7 @@ public class User{
     this.devices         = devices;
   }
 
-  public User(String id, String password, int numberOfDevices, 
+  public User(int id, String password, int numberOfDevices, 
     String lastChanged, Device[] devices)
   {
     this.id              = id;
@@ -32,8 +32,8 @@ public class User{
     this.devices         = devices;
   }
 
-  public void setId(String id){this.id = id;};
-  public String getId(){return this.id;}
+  public void setId(int id){this.id = id;};
+  public int getId(){return this.id;}
 
   public void setPassword(String password){this.password = password;}
   public String getPassword(){return this.password;}
