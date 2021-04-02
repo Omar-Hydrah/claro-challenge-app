@@ -21,7 +21,7 @@
         </activity>
         <activity
           android:name="MainActivity"
-          android:label="@string/login"
+          android:label="@string/activity_home"
           android:theme="@style/AppTheme"
           >
         </activity>
