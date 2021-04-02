@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.view.View;
+import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import io.reactivex.Single;
@@ -14,6 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import com.claroclient.MainActivity;
 import com.claroclient.AppRepository;
+import com.claroclient.model.User;
 
 public class LoginActivity extends AppCompatActivity
 {
@@ -38,18 +40,27 @@ public class LoginActivity extends AppCompatActivity
     repo.login(userId)
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe(response -> {
-        if(response == "success"){
-          Intent homeIntent = new Intent(this, MainActivity.class);
-          startActivity(homeIntent);
-        }else if(response == "failure"){
-          displayMessage("User id not found");
-        }else{
-          displayMessage("Uknown response received");
-        }
-      });
+      .subscribe(this::handleSuccess, this::handleError);
   }
   public void displayMessage(String message){
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+  }
+
+  private void handleSuccess(User user){
+    if(user != null){
+      try{
+        // The user is not a null object
+        user.toString();
+        Intent homeIntent = new Intent(this, MainActivity.class);
+        startActivity(homeIntent);
+      }catch(Exception e){
+        displayMessage("User id not found");
+      }
+    }
+  }
+
+  private void handleError(Throwable t){
+    displayMessage("User id not found");
+    Log.i("claroclient", t.toString());
   }
 }
