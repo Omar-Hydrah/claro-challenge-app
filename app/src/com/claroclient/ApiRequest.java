@@ -24,6 +24,7 @@ import java.util.HashMap;
 
 import com.claroclient.util.Constants;
 import com.claroclient.ApiService;
+import com.claroclient.model.User;
 
 public class ApiRequest {
   private Retrofit retrofit;
@@ -43,7 +44,7 @@ public class ApiRequest {
     service = retrofit.create(ApiService.class);
   }
 
-  public Single<String> login(String userId){
+  public Single<User> login(String userId){
     return service.login(userId);
   }
 

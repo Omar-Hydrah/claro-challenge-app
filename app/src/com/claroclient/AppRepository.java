@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.claroclient.ApiRequest;
+import com.claroclient.model.User;
 
 public class AppRepository{
   private static AppRepository instance;
@@ -21,12 +22,12 @@ public class AppRepository{
     }
     return instance;
   }
-  
+
   private AppRepository(){
     request = new ApiRequest();
   }
 
-  public Single<String> login(String userId){
+  public Single<User> login(String userId){
     return request.login(userId);
   }
 }
