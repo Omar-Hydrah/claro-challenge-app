@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity
 
   private AppRepository repo;
   private EditText inputUserId;
+  private String userId;
 
   /** Called when the activity is first created. */
   @Override
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity
   }
 
   public void login(View view){
-    final String userId  = inputUserId.getText().toString().trim();
+    userId  = inputUserId.getText().toString().trim();
 
     repo.login(userId)
       .subscribeOn(Schedulers.io())
@@ -48,14 +49,9 @@ public class LoginActivity extends AppCompatActivity
 
   private void handleSuccess(User user){
     if(user != null){
-      try{
-        // The user is not a null object
-        user.toString();
-        Intent homeIntent = new Intent(this, MainActivity.class);
-        startActivity(homeIntent);
-      }catch(Exception e){
-        displayMessage("User id not found");
-      }
+      repo.putUserId(userId);
+      Intent homeIntent = new Intent(this, MainActivity.class);
+      startActivity(homeIntent);
     }
   }
 
