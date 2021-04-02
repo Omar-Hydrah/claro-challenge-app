@@ -10,11 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.claroclient.ApiRequest;
+import com.claroclient.PreferenceHandler;
 import com.claroclient.model.User;
 
 public class AppRepository{
   private static AppRepository instance;
   private ApiRequest request;
+  private PreferenceHandler prefHandler;
+
 
   public static AppRepository getInstance(){
     if(instance == null){
@@ -24,10 +27,19 @@ public class AppRepository{
   }
 
   private AppRepository(){
-    request = new ApiRequest();
+    request     = new ApiRequest();
+    prefHandler = new PreferenceHandler(); 
   }
 
   public Single<User> login(String userId){
     return request.login(userId);
+  }
+
+  public void putUserId(String userId){
+    prefHandler.putUserId(userId);
+  }
+
+  public String getUserId(){
+    return prefHandler.getUserId();
   }
 }
