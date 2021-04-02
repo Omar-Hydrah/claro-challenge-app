@@ -1,15 +1,32 @@
 package com.claroclient;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends Activity
+import com.claroclient.AppRepository;
+import com.claroclient.model.User;
+
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity
 {
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-    }
+
+  private AppRepository repo;
+  private TextView userIdText;
+
+  /** Called when the activity is first created. */
+  @Override
+  public void onCreate(Bundle savedInstanceState)
+  {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+
+    repo = AppRepository.getInstance();
+
+    String userId = repo.getUserId();
+
+    userIdText = (TextView) findViewById(R.id.userId);
+    userIdText.setText(userId);
+  }
 }
