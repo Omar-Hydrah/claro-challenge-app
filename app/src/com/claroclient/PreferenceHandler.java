@@ -19,6 +19,7 @@ public class PreferenceHandler {
 
   public void putUserId(String userId){
     editor.putString("userId", userId);
+    editor.commit();
   }
 
   public String getUserId(){
