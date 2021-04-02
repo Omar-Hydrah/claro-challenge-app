@@ -13,6 +13,25 @@ public class User{
 
   }
 
+  public User(String id, int numberOfDevices, String lastChanged, 
+    Device[] devices)
+  {
+    this.id              = id;
+    this.numberOfDevices = numberOfDevices;
+    this.lastChanged     = lastChanged;
+    this.devices         = devices;
+  }
+
+  public User(String id, String password, int numberOfDevices, 
+    String lastChanged, Device[] devices)
+  {
+    this.id              = id;
+    this.password        = password;
+    this.numberOfDevices = numberOfDevices;
+    this.lastChanged     = lastChanged;
+    this.devices         = devices;
+  }
+
   public void setId(String id){this.id = id;};
   public String getId(){return this.id;}
 
