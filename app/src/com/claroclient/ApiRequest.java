@@ -21,10 +21,12 @@ import io.reactivex.Single;
 import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 import com.claroclient.util.Constants;
 import com.claroclient.ApiService;
 import com.claroclient.model.User;
+import com.claroclient.model.Device;
 
 public class ApiRequest {
   private Retrofit retrofit;
@@ -46,6 +48,10 @@ public class ApiRequest {
 
   public Single<User> login(String userId){
     return service.login(userId);
+  }
+
+  public Single<List<Device>> getDeviceList(String userId){
+    return service.getDeviceList(userId);
   }
 
   public OkHttpClient buildClient(){

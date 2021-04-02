@@ -11,12 +11,16 @@ import retrofit2.http.Path;
 
 import io.reactivex.Single;
 import java.util.Map;
+import java.util.List;
 
 import com.claroclient.model.User;
+import com.claroclient.model.Device;
 
 public interface ApiService{
 
   @GET("/user/profile/{id}")
   Single<User> login(@Path("id") String userId);
 
+  @GET("/user/profile/{id}/device-list")
+  Single<List<Device>> getDeviceList(@Path("id") String userId); 
 }

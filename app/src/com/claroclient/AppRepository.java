@@ -12,6 +12,7 @@ import java.util.Map;
 import com.claroclient.ApiRequest;
 import com.claroclient.PreferenceHandler;
 import com.claroclient.model.User;
+import com.claroclient.model.Device;
 
 public class AppRepository{
   private static AppRepository instance;
@@ -33,6 +34,10 @@ public class AppRepository{
 
   public Single<User> login(String userId){
     return request.login(userId);
+  }
+
+  public Single<List<Device>> getDeviceList(String userId){
+    return request.getDeviceList(userId);
   }
 
   public void putUserId(String userId){
