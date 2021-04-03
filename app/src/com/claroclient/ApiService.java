@@ -18,7 +18,7 @@ import com.claroclient.model.Device;
 
 public interface ApiService{
 
-  @GET("/user/profile/{id}")
+  @GET("/user/login/{id}")
   Single<User> login(@Path("id") String userId);
 
   @GET("/user/profile/{id}/device-list")
