@@ -31,4 +31,16 @@
 		app:layout_constraintTop_toBottomOf="@+id/header"
 		/>
 
+	<androidx.recyclerview.widget.RecyclerView 
+		android:id="@+id/recycler_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:scrollbars="vertical"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/userId"
+		>
+		
+	</androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
