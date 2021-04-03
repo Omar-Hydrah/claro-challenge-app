@@ -1,12 +1,28 @@
 package com.claroclient.model;
 
 import com.claroclient.model.Device;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 
 public class User{
+
+  @Expose
+  @SerializedName("id")
   private int id;
+
   private String password;
+
+  @Expose
+  @SerializedName("numberOfDevices")
   private int numberOfDevices;
+
+  @Expose
+  @SerializedName("lastChanged")
   private String lastChanged;
+
+  @Expose
+  @SerializedName("devices")
   private Device[] devices;
 
   public User(){
