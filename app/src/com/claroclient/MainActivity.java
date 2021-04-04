@@ -1,5 +1,6 @@
 package com.claroclient;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -8,12 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-
 
 import com.claroclient.AppRepository;
 import com.claroclient.DeviceAdapter;
@@ -21,7 +23,8 @@ import com.claroclient.model.User;
 import com.claroclient.model.Device;
 
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity 
+  implements DeviceClickListener
 {
 
   private AppRepository repo;
@@ -60,5 +63,15 @@ public class MainActivity extends AppCompatActivity
   private void handleError(Throwable t){
     Toast.makeText(this, "Failed to find devices", Toast.LENGTH_SHORT)
       .show();
+  }
+
+  @Override
+  public void handleDeviceClick(Device device){
+    Gson gson         = new Gson();
+    String deviceJson = gson.toJson(device);
+
+    Intent detailsIntent = new Intent(this, DeviceDetailsActivity.class);
+    detailsIntent.putExtra("deviceJson", deviceJson);
+    startActivity(detailsIntent); 
   }
 }

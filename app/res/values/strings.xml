@@ -8,5 +8,12 @@
     <string name="userid">User Id</string>
     <string name="name">Name</string>
 
+    <string name="device_details">Device Details</string>
+    <string name="device_name">Device Name</string>
+    <string name="remove_device">Remove Device</string>
+    <string name="change">Change</string>
+    <string name="rename">Rename</string>
+    <string name="switch_device">Switch Device</string>
+
     <string name="button_login">Login</string>
 </resources>

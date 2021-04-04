@@ -19,10 +19,23 @@ public class DeviceAdapter extends
 {
   private List<Device> devices;
   private Context context;
+  private DeviceClickListener listener;
 
   public DeviceAdapter(Context context, List<Device> devices){
     this.devices = devices;
     this.context = context;
+
+    if(context instanceof DeviceClickListener){
+      this.listener = (DeviceClickListener) context;
+    }
+  }
+
+  public DeviceAdapter(Context context, List<Device> devices, 
+    DeviceClickListener listener)
+  {
+    this.devices  = devices;
+    this.context  = context;
+    this.listener = listener;
   }
 
   @Override
@@ -46,6 +59,14 @@ public class DeviceAdapter extends
 
     holder.textName.setText(device.getName());
     holder.deviceImage.setImageDrawable(drawable);
+
+    holder.textName.setOnClickListener(view ->{
+      listener.handleDeviceClick(device);
+    });
+
+    holder.deviceImage.setOnClickListener(view ->{
+      listener.handleDeviceClick(device);
+    });
   }
 
   @Override

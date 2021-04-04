@@ -25,5 +25,16 @@
           android:theme="@style/AppTheme"
           >
         </activity>
+        <activity
+          android:name="DeviceDetailsActivity"
+          android:label="@string/device_details"
+          android:theme="@style/AppTheme"
+          android:parentActivityName="com.claroclient.MainActivity"
+          >
+          <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.claroclient.MainActivity"
+            />
+        </activity>
     </application>
 </manifest>
