@@ -92,7 +92,8 @@ public class ApiRequest {
       {
         Request originalRequest = chain.request();
         Request.Builder requestBuilder = originalRequest.newBuilder()
-          .header("User-Agent", "Claro Client");
+          .header("User-Agent", "Claro Client")
+          .header("Content-Type", "application/json; charset=utf-8");
         Request request = requestBuilder.build();
 
         return chain.proceed(request);
