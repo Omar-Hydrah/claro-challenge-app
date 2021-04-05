@@ -23,8 +23,6 @@ import java.util.Map;
 import java.util.HashMap;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.HashMap;
 import java.util.List;
 
 import com.claroclient.util.Constants;
@@ -33,7 +31,7 @@ import com.claroclient.model.User;
 import com.claroclient.model.Device;
 import com.claroclient.request.RegisterDeviceRequest;
 import com.claroclient.request.SwitchDeviceRequest;
-
+import com.claroclient.request.RenameDeviceRequest;
 
 public class ApiRequest {
   private Retrofit retrofit;
@@ -62,11 +60,9 @@ public class ApiRequest {
   }
 
   public Single<String> changeDeviceName(String deviceId, String newName){
-    Map<String, String> changeObject = new HashMap<>();
-    changeObject.put("deviceId", deviceId);
-    changeObject.put("newName", newName);
+    RenameDeviceRequest data = new RenameDeviceRequest(deviceId, newName);
 
-    return service.changeDeviceName(changeObject);
+    return service.changeDeviceName(data);
   }
 
   public Single<String> switchDevice(int userId, String deviceId, 

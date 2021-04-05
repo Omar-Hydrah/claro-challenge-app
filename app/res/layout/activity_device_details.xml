@@ -18,6 +18,17 @@
 		app:layout_constraintLeft_toLeftOf="parent"
 		/>
 
+	<EditText 
+		android:id="@+id/input_name"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/device_name"
+		android:textSize="18dp"
+		android:visibility="invisible"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintLeft_toLeftOf="parent"
+		/>
+
 	<Button 
 		android:id="@+id/button_rename"
 		android:layout_width="0dp"
