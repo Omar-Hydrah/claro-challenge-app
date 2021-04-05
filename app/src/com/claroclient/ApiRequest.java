@@ -32,6 +32,7 @@ import com.claroclient.model.Device;
 import com.claroclient.request.RegisterDeviceRequest;
 import com.claroclient.request.SwitchDeviceRequest;
 import com.claroclient.request.RenameDeviceRequest;
+import com.claroclient.response.ApiResponse;
 
 public class ApiRequest {
   private Retrofit retrofit;
@@ -59,13 +60,13 @@ public class ApiRequest {
     return service.getDeviceList(userId);
   }
 
-  public Single<String> changeDeviceName(String deviceId, String newName){
+  public Single<ApiResponse> changeDeviceName(String deviceId, String newName){
     RenameDeviceRequest data = new RenameDeviceRequest(deviceId, newName);
 
     return service.changeDeviceName(data);
   }
 
-  public Single<String> switchDevice(int userId, String deviceId, 
+  public Single<ApiResponse> switchDevice(int userId, String deviceId, 
     Device newDevice)
   {
     SwitchDeviceRequest data = new SwitchDeviceRequest(userId, deviceId, 
@@ -74,11 +75,11 @@ public class ApiRequest {
     return service.switchDevice(data);
   }
 
-  public Single<String> removeDevice(String deviceId){
+  public Single<ApiResponse> removeDevice(String deviceId){
     return service.removeDevice(deviceId);
   }
 
-  public Single<String> registerDevice(int userId, Device device){
+  public Single<ApiResponse> registerDevice(int userId, Device device){
     RegisterDeviceRequest data = new RegisterDeviceRequest(userId, device);
     return service.registerDevice(data);
   }

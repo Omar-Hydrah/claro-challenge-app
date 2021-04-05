@@ -19,6 +19,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import com.claroclient.AppRepository;
 import com.claroclient.model.Device;
+import com.claroclient.response.ApiResponse;
+import com.claroclient.response.ApiResult;
 
 
 public class DeviceDetailsActivity extends AppCompatActivity{
@@ -80,7 +82,11 @@ public class DeviceDetailsActivity extends AppCompatActivity{
   }
 
   public void removeDevice(View view){
-
+    repo.removeDevice(this.device.getId())
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe(this::handleRemoveResponse, this::handleRemoveFailure);
+    // finish();
   }
 
   private void toggleVisibility(){
@@ -96,8 +102,8 @@ public class DeviceDetailsActivity extends AppCompatActivity{
     }
   }
 
-  private void handleRenamingResponse(String response){
-    if(response.equals("success")){
+  private void handleRenamingResponse(ApiResponse response){
+    if(response.getResult().equals(ApiResult.SUCCESS.toString())){
       Toast.makeText(this, "Name changed successfully" , 
         Toast.LENGTH_SHORT).show();
     }else{
@@ -108,5 +114,21 @@ public class DeviceDetailsActivity extends AppCompatActivity{
 
   private void handleRenamingFailure(Throwable t){
     Toast.makeText(this, "Failed to change name", Toast.LENGTH_SHORT).show();
+  }
+
+  private void handleRemoveResponse(ApiResponse response){
+    if(response.getResult().equals(ApiResult.SUCCESS.toString())){
+      finish();
+      Toast.makeText(this, "Device removed successfully" , 
+        Toast.LENGTH_SHORT).show();
+    }else{
+      Toast.makeText(this, "Failed to remove device", 
+        Toast.LENGTH_SHORT).show();
+    }
+  }
+
+  private void handleRemoveFailure(Throwable t){
+    Log.i("claroclient", t.toString());
+    Toast.makeText(this, "Failed to remove device", Toast.LENGTH_SHORT).show();
   }
 }

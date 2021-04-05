@@ -15,6 +15,8 @@ import com.claroclient.model.User;
 import com.claroclient.model.Device;
 import com.claroclient.request.RegisterDeviceRequest;
 import com.claroclient.request.SwitchDeviceRequest;
+import com.claroclient.response.ApiResponse;
+
 
 public class AppRepository{
   private static AppRepository instance;
@@ -50,21 +52,21 @@ public class AppRepository{
     return prefHandler.getUserId();
   }
 
-  public Single<String> changeDeviceName(String deviceId, String newName){
+  public Single<ApiResponse> changeDeviceName(String deviceId, String newName){
     return request.changeDeviceName(deviceId, newName);
   }
 
-  public Single<String> switchDevice(int userId, String deviceId, 
+  public Single<ApiResponse> switchDevice(int userId, String deviceId, 
     Device newDevice)
   {
     return request.switchDevice(userId, deviceId, newDevice);
   }
 
-  public Single<String> removeDevice(String deviceId){
+  public Single<ApiResponse> removeDevice(String deviceId){
     return request.removeDevice(deviceId);
   }
 
-  public Single<String> registerDevice(int userId, Device device){
+  public Single<ApiResponse> registerDevice(int userId, Device device){
     return request.registerDevice(userId, device);
   }
 }
