@@ -18,6 +18,10 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
 import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
@@ -27,6 +31,9 @@ import com.claroclient.util.Constants;
 import com.claroclient.ApiService;
 import com.claroclient.model.User;
 import com.claroclient.model.Device;
+import com.claroclient.request.RegisterDeviceRequest;
+import com.claroclient.request.SwitchDeviceRequest;
+
 
 public class ApiRequest {
   private Retrofit retrofit;
@@ -52,6 +59,32 @@ public class ApiRequest {
 
   public Single<List<Device>> getDeviceList(String userId){
     return service.getDeviceList(userId);
+  }
+
+  public Single<String> changeDeviceName(String deviceId, String newName){
+    Map<String, String> changeObject = new HashMap<>();
+    changeObject.put("deviceId", deviceId);
+    changeObject.put("newName", newName);
+
+    return service.changeDeviceName(changeObject);
+  }
+
+  public Single<String> switchDevice(int userId, String deviceId, 
+    Device newDevice)
+  {
+    SwitchDeviceRequest data = new SwitchDeviceRequest(userId, deviceId, 
+      newDevice);
+
+    return service.switchDevice(data);
+  }
+
+  public Single<String> removeDevice(String deviceId){
+    return service.removeDevice(deviceId);
+  }
+
+  public Single<String> registerDevice(int userId, Device device){
+    RegisterDeviceRequest data = new RegisterDeviceRequest(userId, device);
+    return service.registerDevice(data);
   }
 
   public OkHttpClient buildClient(){

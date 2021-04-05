@@ -15,6 +15,8 @@ import java.util.List;
 
 import com.claroclient.model.User;
 import com.claroclient.model.Device;
+import com.claroclient.request.RegisterDeviceRequest;
+import com.claroclient.request.SwitchDeviceRequest;
 
 public interface ApiService{
 
@@ -23,4 +25,20 @@ public interface ApiService{
 
   @GET("/user/profile/{id}/device-list")
   Single<List<Device>> getDeviceList(@Path("id") String userId); 
+
+  @GET("/device/{id}")
+  Single<Device> getDevice(@Path("id") String device);
+
+  // Contains two fields: deviceId, and newName
+  @POST("/user/change-device-name")
+  Single<String> changeDeviceName(@FieldMap Map<String, String> changeObject);
+
+  @POST("/user/remove-device/{id}")
+  Single<String> removeDevice(@Path("id") String deviceId);
+
+  @POST("/user/register-device")
+  Single<String> registerDevice(RegisterDeviceRequest data);
+
+  @POST("/user/switch-device")
+  Single<String> switchDevice(SwitchDeviceRequest data);  
 }
